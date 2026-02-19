@@ -12,8 +12,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
+    private ProcesadorTexto procesador;
     public VentanaPrincipal() {
         initComponents();
+        procesador= new ProcesadorTexto();
+        //Centra la ventana al abrirla
+        this.setLocationRelativeTo(null);
         
         
     }
@@ -87,11 +91,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+        //Llamamos a la logica para leer el archivo
+        String contenido = procesador.leerArchivoConFiltro(this);
+        if(contenido != null){
+            //txtContenido es el JTextArea de arriba
+            txtContenido.setText(contenido);
+
+            //Limpia la consola en caso que tuviera algo
+            txtMensaje.setText("");
+        }
     }                                          
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+        //Tomamos el texto del cuadro de arriba
+        String textoParaAnalizar= txtContenido.getText();
+        //Lo pasamos a la clase logica para que aplique el RegEx
+        String resultado= procesador.buscarIdentificadores(textoParaAnalizar);
+        //Ponemos el resultado en el cuadro de abajo
+        txtMensaje.setText(resultado);
     }                                          
 
     /**
