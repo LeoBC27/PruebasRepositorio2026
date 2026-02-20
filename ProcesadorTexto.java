@@ -37,7 +37,7 @@ public class ProcesadorTexto {
         if (texto == null || texto.trim().isEmpty()){
             return "No hay texto para analizar. Abre un archivo";
         }
-        //Separamos todo el texto por espacios, saltos de linea o tabulaciones
+        //Separamos todo el texto por espacios, saltos de linea
         String[] palabras = texto.split("\\s+");
     
         String regexIdentificador= "[a-zA-Z][a-zA-Z0-9_+*()\\[\\]\\.-]*";
