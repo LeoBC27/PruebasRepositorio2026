@@ -41,7 +41,7 @@ public class ProcesadorTexto {
         //Separamos todo el texto por espacios, saltos de linea o tabulaciones
         String[] palabras = texto.split("\\s+");
         //RegEx para Identificadores
-        String regexIdentificador= "[a-zA-Z][a-zA-Z0-9_+*()\\[\\]\\.-]*";
+        String regexIdentificador= "[A-Za-z]\\w*";
 
         int contador=0;
         StringBuilder resultados= new StringBuilder();
