@@ -8,6 +8,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class ProcesadorTexto {
+    //Metodo para abrir el buscador de archivos y leer el texto
     public String leerArchivoConFiltro(Component padre){
         JFileChooser fileChooser= new JFileChooser();
         //Filtro para mostrar solo archivos que nos interesan
@@ -37,15 +38,10 @@ public class ProcesadorTexto {
         if (texto == null || texto.trim().isEmpty()){
             return "No hay texto para analizar. Abre un archivo";
         }
-        //Separamos todo el texto por espacios, saltos de linea
+        //Separamos todo el texto por espacios, saltos de linea o tabulaciones
         String[] palabras = texto.split("\\s+");
-<<<<<<< HEAD
         //RegEx para Identificadores
         String regexIdentificador= "[A-Za-z]\\w*";
-=======
-    
-        String regexIdentificador= "[a-zA-Z][a-zA-Z0-9_+*()\\[\\]\\.-]*";
->>>>>>> origin/main
 
         int contador=0;
         StringBuilder resultados= new StringBuilder();
