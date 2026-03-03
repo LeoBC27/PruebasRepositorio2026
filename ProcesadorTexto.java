@@ -7,8 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 public class ProcesadorTexto {
-    //Metodo para abrir el buscador de archivos y leer el texto
+    
+    // 1. Método para leer archivos
     public String leerArchivoConFiltro(Component padre){
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto","txt","java","html","css");
@@ -29,54 +31,30 @@ public class ProcesadorTexto {
         }
         return null;
     }
-<<<<<<< HEAD
-    //Metodo que aplica el RegEx a el texto
     public String buscarIdentificadores(String texto){
         if (texto == null || texto.trim().isEmpty()){
             return "No hay texto para analizar. Abre un archivo";
         }
-        //Separamos todo el texto por espacios, saltos de linea o tabulaciones
-        String[] palabras = texto.split("\\s+");
-        //RegEx para Identificadores
-        String regexIdentificador= "[A-Za-z]\\w*";
-
-        int contador=0;
-        StringBuilder resultados= new StringBuilder();
-        for(String palabra : palabras){
-            if (palabra.matches(regexIdentificador)){
-                contador++;
-                resultados.append(palabra).append("\n");
+        StringBuilder resultados = new StringBuilder();
+        int cantIDs = 0;
+        int cantNum = 0;
+        String regex = "([A-Za-z]\\w*)|([0-9]+)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(texto);
+        while (matcher.find()) {
+            String hallazgo = matcher.group();
+            // Si coincide con el Grupo 1 (Identificadores)
+            if (matcher.group(1) != null) {
+                cantIDs++;
+                resultados.append("Identificador: ").append(hallazgo).append("\n");
+            } 
+            // Si coincide con el Grupo 2 (Números)
+            else if (matcher.group(2) != null) {
+                cantNum++;
+                resultados.append("Número: ").append(hallazgo).append("\n");
             }
         }
-        return "Se encontraron "+contador+" identificadores validos:\n\n"+resultados.toString();
-=======
-    public String buscarIdentificadores(String texto) {
-    if (texto == null || texto.trim().isEmpty()) {
-        return "No hay texto para analizar. Abre un archivo";
->>>>>>> origin/main
+        return "IDs: " + cantIDs + " | Números: " + cantNum + 
+               "\n\nElementos encontrados en orden:\n" + resultados.toString();
     }
-    StringBuilder resultados = new StringBuilder();
-    int contador = 0;
-    int cantIDs = 0;    // Contador para identificadores
-    int cantNum = 0;    // Contador para números
-    
-    String regex = "([a-zA-Z][a-zA-Z0-9]*)|([0-9]+)";
-    Pattern pattern = Pattern.compile(regex);
-    Matcher matcher = pattern.matcher(texto);
-    
-    while (matcher.find()) {
-        contador++;
-        String hallazgo = matcher.group();
-        
-        if (Character.isDigit(hallazgo.charAt(0))) {
-            cantNum++; // Aumenta contador de números
-            resultados.append("Número: ").append(hallazgo).append("\n");
-        } else {
-            cantIDs++; // Aumenta contador de IDs
-            resultados.append("Identificador: ").append(hallazgo).append("\n");
-        }
-    }
-    
-    return "Identificadores: " + cantIDs + " | Números: " + cantNum + " | Total: " + contador + 
-           "\n\nSe encontraron en orden:\n" + resultados.toString();
-}}
+}
