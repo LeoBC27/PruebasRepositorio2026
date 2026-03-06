@@ -1,14 +1,19 @@
-public class VentanaPrincipalC extends javax.swing.JFrame {
+package analizadorlexico.vista;
+import analizadorlexico.control.GestorArchivos;
+import analizadorlexico.control.ProcesadorTexto;
+
+public class VentanaPrincipal extends javax.swing.JFrame {
+
+    GestorArchivos gestor = new GestorArchivos();
+    ProcesadorTexto procesador = new ProcesadorTexto();
 
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaPrincipalC() {
+    public VentanaPrincipal() {
         initComponents();
-        
     }
 
-   
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
@@ -66,24 +71,14 @@ public class VentanaPrincipalC extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        String texto = gestor.leerArchivoConFiltro(this);
+        txtContenido.setText(texto);
     }                                        
 
     private void btnEncontrarActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
+        String resultado = procesador.buscarIdentificadores(txtContenido.getText());
+        txtMensaje.setText(resultado);
     }                                            
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaPrincipal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JMenuBar BarraMenu;
