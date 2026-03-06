@@ -33,14 +33,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtMensaje.setRows(5);
         PaneContenido.setViewportView(txtMensaje);
 
-        getContentPane().add(PaneContenido, java.awt.BorderLayout.PAGE_END);
-
         txtContenido.setColumns(20);
         txtContenido.setRows(5);
         PaneMensaje.setViewportView(txtContenido);
 
-        getContentPane().add(PaneMensaje, java.awt.BorderLayout.CENTER);
+        separador = new javax.swing.JSplitPane(javax.swing.JSplitPane.VERTICAL_SPLIT, PaneMensaje, PaneContenido);
 
+        separador.setDividerLocation(300); 
+
+        getContentPane().add(separador, java.awt.BorderLayout.CENTER);
         btnArchivo.setText("Archivo");
 
         btnAbrir.setText("Abrir");
@@ -66,7 +67,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         BarraMenu.add(btnProcesos);
 
         setJMenuBar(BarraMenu);
-
+        this.setSize(600,500);
         pack();
     }// </editor-fold>                        
 
@@ -90,5 +91,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu btnProcesos;
     private javax.swing.JTextArea txtContenido;
     private javax.swing.JTextArea txtMensaje;
+    private javax.swing.JSplitPane separador;
     // End of variables declaration                   
 }
