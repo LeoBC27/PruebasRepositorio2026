@@ -15,7 +15,7 @@ public class ProcesadorTexto {
         int cantIDs = 0;
         int cantNum = 0;
 
-        String regex = "([A-Za-z]\\w*)|([0-9]+)";
+        String regex = "([A-Za-z]\\w*)|(0|[1-9]\\d*)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(texto);
 
