@@ -26,7 +26,7 @@ public class ProcesadorTexto {
         while (matcher.find()) {
 
             String hallazgo = matcher.group();
-             // 🔴 Guardar SIEMPRE el lexema en orden
+             //Guardar SIEMPRE el lexema en orden
             listaLexemas.add(hallazgo);
 
             if (matcher.group(1) != null) {
