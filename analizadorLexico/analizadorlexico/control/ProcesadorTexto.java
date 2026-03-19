@@ -2,11 +2,11 @@ package analizadorlexico.control;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.ArrayList;
 
 public class ProcesadorTexto {
 
     public String buscarIdentificadores(String texto){
-
         if (texto == null || texto.trim().isEmpty()){
             return "No hay texto para analizar. Abre un archivo";
         }
@@ -15,6 +15,9 @@ public class ProcesadorTexto {
         int cantIDs = 0;
         int cantNum = 0;
         int cantOtros= 0;
+        
+        //Lista para guardar lexemas
+        ArrayList<String> listaLexemas = new ArrayList<>();
 
         String regex = "([A-Za-z]\\w*)|(0|[1-9]\\d*)|(==|!=|<=|>=|<|>|=|\\+|-|\\.|,|;|\\(|\\))";
         Pattern pattern = Pattern.compile(regex);
@@ -23,6 +26,8 @@ public class ProcesadorTexto {
         while (matcher.find()) {
 
             String hallazgo = matcher.group();
+             // 🔴 Guardar SIEMPRE el lexema en orden
+            listaLexemas.add(hallazgo);
 
             if (matcher.group(1) != null) {
                 cantIDs++;
@@ -38,6 +43,10 @@ public class ProcesadorTexto {
                 resultados.append(nombreSimb).append(": ").append(hallazgo).append("\n");
             }
         }
+        // Imprimir lista completa en consola
+        System.out.println("Lexemas encontrados en orden:");
+        System.out.println(listaLexemas);
+    
 
         return "IDs: " + cantIDs + " | Números: " + cantNum + " | Otros Símbolos: " + cantOtros +
                "\n\nElementos encontrados en orden:\n" + resultados.toString();
