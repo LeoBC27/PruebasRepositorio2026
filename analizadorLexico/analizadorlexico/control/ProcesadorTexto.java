@@ -24,10 +24,8 @@ public class ProcesadorTexto {
         Matcher matcher = pattern.matcher(texto);
 
         while (matcher.find()) {
-            //Se cambio el IF
+
             String hallazgo = matcher.group();
-            // Guardar SIEMPRE el lexema en orden
-            listaLexemas.add(hallazgo);
 
             if (matcher.group(1) != null) {
                 cantIDs++;
@@ -37,13 +35,16 @@ public class ProcesadorTexto {
                 resultados.append("Número: ").append(hallazgo).append("\n");
             } else if (matcher.group(3) != null) {
                 cantOtros++;
+
+                // SOLO símbolos
                 String nombreSimb = nombreLexema(hallazgo);
-                resultados.append(nombreSimb).append(": ").append(hallazgo).append("\n");
+                listaLexemas.add(nombreSimb + ": " + hallazgo);
             }
         }
-        // Imprimir lista completa en consola
         System.out.println("Lexemas encontrados en orden:");
-        System.out.println(listaLexemas);
+        for (String lex : listaLexemas) {
+            System.out.println(lex);
+        }
 
         return "IDs: " + cantIDs + " | Números: " + cantNum + " | Otros Símbolos: " + cantOtros +
                 "\n\nElementos encontrados en orden:\n" + resultados.toString();
