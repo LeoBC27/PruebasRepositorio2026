@@ -2,6 +2,9 @@ package analizadorlexico.control;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
+
 import java.util.ArrayList;
 
 public class ProcesadorTexto {
@@ -20,7 +23,7 @@ public class ProcesadorTexto {
         // Lista para guardar lexemas
         ArrayList<String> listaLexemas = new ArrayList<>();
 
-        String regex = "([A-Za-z]\\w*)|(0|[1-9]\\d*)|(==|!=|<=|>=|<|>|=|\\+|-|\\*|\\.|,|;|\\(|\\))|(%|/|\\|)";
+        String regex = "([A-Za-z]\\w*)|(0|[1-9]\\d*)|(==|!=|<=|>=|<|>|=|\\+|-|\\*|\\.|,|;|\\(|\\))|(%|/)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(texto);
 
@@ -44,6 +47,14 @@ public class ProcesadorTexto {
             } else if (matcher.group(4) != null){
                 cantErrores++;
                 resultados.append(">>Error Lexico: Simbolo no permitido ").append(hallazgo).append(" >>\n");
+                //Ventana de Advertencia
+                int respuesta = JOptionPane.showOptionDialog(null, "Se encontro un error lexico: "+ hallazgo
+                + "\n¿Quieres terminar o seguir?", "Advertencia de Error", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE, null, new Object[]{"Terminar","Seguir"}, "Seguir");
+                if (respuesta == JOptionPane.YES_OPTION){
+                    resultados.append("\n-- Analisis Detenido Por el Usuario --\n");
+                    break;
+                }
             }
         }
         return "IDs: " + cantIDs + " | Números: " + cantNum + " | Lexemas: " + cantLexe + " | Errores: " + cantErrores +

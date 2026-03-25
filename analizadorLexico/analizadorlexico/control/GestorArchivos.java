@@ -12,6 +12,7 @@ public class GestorArchivos {
 
     public String leerArchivoConFiltro(Component padre){
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File("test"));
         FileNameExtensionFilter filtro = new FileNameExtensionFilter(
                 "Archivos de texto","txt","java","html","css");
         fileChooser.setFileFilter(filtro);
