@@ -15,11 +15,12 @@ public class ProcesadorTexto {
         int cantIDs = 0;
         int cantNum = 0;
         int cantLexe = 0;
+        int cantErrores = 0;
 
         // Lista para guardar lexemas
         ArrayList<String> listaLexemas = new ArrayList<>();
 
-        String regex = "([A-Za-z]\\w*)|(0|[1-9]\\d*)|(==|!=|<=|>=|<|>|=|\\+|-|\\.|,|;|\\(|\\))";
+        String regex = "([A-Za-z]\\w*)|(0|[1-9]\\d*)|(==|!=|<=|>=|<|>|=|\\+|-|\\*|\\.|,|;|\\(|\\))|(%|/|\\|)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(texto);
 
@@ -39,14 +40,13 @@ public class ProcesadorTexto {
                 // SOLO símbolos
                 String nombreSimb = nombreLexema(hallazgo);
                 listaLexemas.add(nombreSimb + ": " + hallazgo);
+                resultados.append(nombreSimb).append(": ").append(hallazgo).append("\n");
+            } else if (matcher.group(4) != null){
+                cantErrores++;
+                resultados.append(">>Error Lexico: Simbolo no permitido ").append(hallazgo).append(" >>\n");
             }
         }
-        System.out.println("Lexemas encontrados en orden:");
-        for (String lex : listaLexemas) {
-            System.out.println(lex);
-        }
-
-        return "IDs: " + cantIDs + " | Números: " + cantNum + " | Lexemas: " + cantLexe +
+        return "IDs: " + cantIDs + " | Números: " + cantNum + " | Lexemas: " + cantLexe + " | Errores: " + cantErrores +
                 "\n\nElementos encontrados en orden:\n" + resultados.toString();
     }
 
@@ -72,8 +72,6 @@ public class ProcesadorTexto {
                 return "RESTA";
             case "*":
                 return "MULT";
-            case "/":
-                return "DIVISION";
             case ".":
                 return "PUNTO";
             case ",":

@@ -13,7 +13,6 @@ public class Lexemas {
     public static final int SUMA = 36;
     public static final int RESTA = 25;
     public static final int MULT = 41;
-    public static final int DIVISION = 13;
     
     public static final int PUNTO = 20;
     public static final int COMA = 47;
