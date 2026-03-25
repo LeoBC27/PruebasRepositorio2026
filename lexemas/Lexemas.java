@@ -1,5 +1,8 @@
+package PruebasRepositorio2026.lexemas;
+
+import java.util.ArrayList;
+
 public class Lexemas {
-    
     public static final int ID = 14;
     public static final int NUM = 7;
 
@@ -20,4 +23,14 @@ public class Lexemas {
     public static final int PUNTO_COMA = 1;
     public static final int PARENTESIS_ABRE = 10;
     public static final int PARENTESIS_CIERRA = 26;
-} 
+
+    public static String[] palabrasReservadas = {"const","begin","for","while"};
+    public static ArrayList <String> palabraRes = new ArrayList<String>();
+    public static void llenaPalRes() {
+        palabraRes.add("do");
+        palabraRes.add("then");
+    }
+    
+
+
+    }
