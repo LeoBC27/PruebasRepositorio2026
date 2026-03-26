@@ -1,0 +1,41 @@
+<Programa>::= <Bloque> .
+
+<Bloque>::=<LinealC><LinealV><LinealP><Proposicion>
+<LinealC>::= <LinealConst>|∅
+<LinealConst>::= const<CicloNum>;
+<CicloNum>::= id=num|id=num,<CicloNum>
+<LinealV>::= <LinealVar>|∅
+<LinealVar>::= var<CicloId>;
+<CicloId>::= id|id,<CicloId>
+<LinealP>::=<CicloProc>|∅
+<CicloProc>::= <LinealProc>|<LinealProc><CicloProc>
+<LinealProc>::= proced id;<Bloque>;
+
+
+<Condicion>::= <Expresion><MultSigno><Expresion>
+<MultSigno>::= ==|!=|<|>|<=|>=
+
+<Proposicion>::= <MultPropo>
+<MultPropo>::= <LinealBegin>|<LinealId>|<LinealWrite>|<LinealRead>|<LinealCall>|<LinealIf>|<LinealWhile>|<LinealFor>
+<LinealBegin>::= begin<CicloProp>end
+<CicloProp>::= <Proposicion>|<Proposicion>;<CicloProp>
+<LinealId>::= id=<Expresion>
+<LinealWrite>::= write<DisyWri>
+<DisyWri>::= id|num
+<LinealRead>::= read id
+<LinealCall>::= call id
+<LinealIf>::= if<Condicion> then <Proposicion>
+<LinealWhile>::= while<Condicion> do <Proposicion>
+<LinealFor>::= for id =<Expresion><DisyExp><Expresion> do <Proposicion>
+<DisyExp>::= to|down
+
+<Expresion>::= <Termino>|<Expresion><CicloTerm><Termino> 
+<CicloTerm>::= <DisySig>
+<DisySig>::= +|-
+
+<Termino>::= <Factor>|<Termino><CicloFact><Factor>
+<CicloFact>::= <DisySigno>
+<DisySigno>::= *|/
+
+<Factor>::=<MultExp>
+<MultExp>::= (<Expresion>)|id|num
