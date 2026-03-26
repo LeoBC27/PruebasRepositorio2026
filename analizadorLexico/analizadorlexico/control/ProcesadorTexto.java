@@ -2,14 +2,18 @@ package analizadorlexico.control;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.swing.JOptionPane;
-
 import java.util.ArrayList;
 
 public class ProcesadorTexto {
 
+    private int erroresLexicos;
+
     public String buscarIdentificadores(String texto) {
+
+        // Reiniciar errores cada análisis
+        erroresLexicos = 0;
+
         if (texto == null || texto.trim().isEmpty()) {
             return "No hay texto para analizar. Abre un archivo";
         }
@@ -20,10 +24,10 @@ public class ProcesadorTexto {
         int cantLexe = 0;
         int cantErrores = 0;
 
-        // Lista para guardar lexemas
         ArrayList<String> listaLexemas = new ArrayList<>();
 
         String regex = "([A-Za-z]\\w*)|(0|[1-9]\\d*)|(==|!=|<=|>=|<|>|=|\\+|-|\\*|\\.|,|;|\\(|\\))|(%|/)";
+
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(texto);
 
@@ -34,34 +38,63 @@ public class ProcesadorTexto {
             if (matcher.group(1) != null) {
                 cantIDs++;
                 resultados.append("Identificador: ").append(hallazgo).append("\n");
+
             } else if (matcher.group(2) != null) {
                 cantNum++;
                 resultados.append("Número: ").append(hallazgo).append("\n");
+
             } else if (matcher.group(3) != null) {
                 cantLexe++;
 
-                // SOLO símbolos
                 String nombreSimb = nombreLexema(hallazgo);
                 listaLexemas.add(nombreSimb + ": " + hallazgo);
-                resultados.append(nombreSimb).append(": ").append(hallazgo).append("\n");
-            } else if (matcher.group(4) != null){
+
+                resultados.append(nombreSimb)
+                        .append(": ")
+                        .append(hallazgo)
+                        .append("\n");
+
+            } else if (matcher.group(4) != null) {
+
                 cantErrores++;
-                resultados.append(">>Error Lexico: Simbolo no permitido ").append(hallazgo).append(" >>\n");
-                //Ventana de Advertencia
-                int respuesta = JOptionPane.showOptionDialog(null, "Se encontro un error lexico: "+ hallazgo
-                + "\n¿Quieres terminar o seguir?", "Advertencia de Error", JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE, null, new Object[]{"Terminar","Seguir"}, "Seguir");
-                if (respuesta == JOptionPane.YES_OPTION){
+                erroresLexicos++;
+
+                resultados.append(">>Error Lexico: Simbolo no permitido ")
+                        .append(hallazgo)
+                        .append(" >>\n");
+
+                int respuesta = JOptionPane.showOptionDialog(
+                        null,
+                        "Se encontro un error lexico: " + hallazgo +
+                                "\n¿Quieres terminar o seguir?",
+                        "Advertencia de Error",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE,
+                        null,
+                        new Object[] { "Terminar", "Seguir" },
+                        "Seguir");
+
+                if (respuesta == JOptionPane.YES_OPTION) {
                     resultados.append("\n-- Analisis Detenido Por el Usuario --\n");
                     break;
                 }
             }
         }
-        return "IDs: " + cantIDs + " | Números: " + cantNum + " | Lexemas: " + cantLexe + " | Errores: " + cantErrores +
-                "\n\nElementos encontrados en orden:\n" + resultados.toString();
+
+        return "IDs: " + cantIDs +
+                " | Números: " + cantNum +
+                " | Lexemas: " + cantLexe +
+                " | Errores: " + cantErrores +
+                "\n\nElementos encontrados en orden:\n"
+                + resultados.toString();
+    }
+
+    public int getErroresLexicos() {
+        return erroresLexicos;
     }
 
     private String nombreLexema(String simbolo) {
+
         switch (simbolo) {
             case "==":
                 return "IGUAL_IGUAL";

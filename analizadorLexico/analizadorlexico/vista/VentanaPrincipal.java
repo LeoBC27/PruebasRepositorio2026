@@ -92,28 +92,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {
         String texto = gestor.leerArchivoConFiltro(this);
         txtContenido.setText(texto);
-
-        // Habilitar botón léxico
         btnLexico.setEnabled(true);
-
-        // Deshabilitar sintáctico por si abren otro archivo
         btnSintactico.setEnabled(false);
     }
 
     private void btnLexicoActionPerformed(java.awt.event.ActionEvent evt) {
         String resultado = procesador.buscarIdentificadores(txtContenido.getText());
         txtMensaje.setText(resultado);
-
-        // Supongamos que si hay error contiene la palabra "error"
-        if (resultado.toLowerCase().contains("error")) {
-            btnSintactico.setEnabled(false);
-        } else {
+        if (procesador.getErroresLexicos() == 0) {
             btnSintactico.setEnabled(true);
+        } else {
+            btnSintactico.setEnabled(false);
         }
     }
 
     private void btnSintacticoActionPerformed(java.awt.event.ActionEvent evt) {
-        txtMensaje.setText("Analisis sintactico en proceso...");
+        // Aún no implementado
     }
 
     // Variables declaration - do not modify
