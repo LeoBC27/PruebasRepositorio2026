@@ -17,6 +17,17 @@ public class PruebasClase {
         Lexema l1 = new Lexema("Computadora", "Portatil");
         System.out.println(l1);
     }
+    public static  int esReservada(String palabra){
+        int res = -1;
+        String[] reservadas = {"const","if","var","while"};
+        palabra = palabra.toLowerCase();
+        for (int i = 0 ; i < reservadas.length ; i++){
+            if (palabra.equals(reservadas[i])) {
+                return i+1;
+            }
+        }
+        return res;
+    }
     
 }
 

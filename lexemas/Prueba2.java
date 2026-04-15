@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import PruebasRepositorio2026.lexemas.Lexema;
+
 public class Prueba2 {
 
 
@@ -22,20 +24,25 @@ public class Prueba2 {
                 "fin_2");
     Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(texto);
-    ArrayList <String> lexemas = new ArrayList<>();
+    ArrayList <Lexema> lexemas = new ArrayList<>();
         while (matcher.find()) {
 
             String hallazgo = matcher.group();
             if (matcher.group(1) != null) {
 
                 // Agregar a identificadores 
-                lexemas.add(hallazgo);
+                lexemas.add(new Lexema(hallazgo, "ID"));
+                continue;   //continue hace un codigo elegante, manda al principio del while para que se vuelva a repetir
             } 
+            if (matcher.group(2) !=null) {
+                lexemas.add(new Lexema(hallazgo, "Num"));
+                continue;
+            }
             if (matcher.group(6)!= null) {
                 System.out.println("ERROR");
             }
-
-        } for (String e : lexemas) {
+            //Continuar con los demas grupos
+        } for (Lexema e : lexemas) {
             System.out.println(e);
             
         }

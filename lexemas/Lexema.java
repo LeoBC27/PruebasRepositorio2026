@@ -8,6 +8,7 @@ public class Lexema {
     public Lexema(String dato, String tipo) {
         this.dato = dato;
         this.tipo = tipo;
+        this.token = token;
     }
     //getters and setters
     public String getDato() {
