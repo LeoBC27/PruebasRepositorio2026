@@ -26,7 +26,12 @@ public class ProcesadorTexto {
 
         ArrayList<String> listaLexemas = new ArrayList<>();
 
-        String regex = "([A-Za-z]\\w*)|(0|[1-9]\\d*)|(==|!=|<=|>=|<|>|=|\\+|-|\\*|\\.|,|;|\\(|\\))|(%|/)";
+        String regex = "([A-Za-z]\\w*)|"+//Identificadores
+                        "(0|[1-9]\\d*)|"+//Numeros
+                        "(==|!=|<=|>=|<|>|=|\\+|-|\\*|/)|"+//Logicos
+                        "(\\.|,|;|\\(|\\))|"+//
+                        "(/s)|"+//
+                        "(.)";
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(texto);
