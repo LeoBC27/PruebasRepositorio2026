@@ -11,7 +11,7 @@ public class Lexema {
         this.tipo = tipo;
         if (tipo.equals("ID")){
             this.token = PruebasClase.esReservada(dato);
-            this.tipo=(token==100)?tipo:"PR";
+            this.tipo=(token==14)?tipo:"PR";
         } else{
             this.token = 0;
         }

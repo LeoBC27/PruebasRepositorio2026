@@ -47,7 +47,7 @@ public class ALexico {
     public static final int CALL = 34;
 
 
-    public static String[] palabrasReservadas = {"const","begin","for","while","var",""};
+    public static String[] palabrasReservadas = {"const","begin","for","while","var"};
     public static ArrayList <String> palabraRes = new ArrayList<String>();
     public static void llenaPalRes() {
         palabraRes.add("do");
