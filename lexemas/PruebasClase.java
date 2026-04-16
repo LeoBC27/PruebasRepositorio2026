@@ -18,8 +18,8 @@ public class PruebasClase {
         System.out.println(l1);
     }
     public static  int esReservada(String palabra){
-        int res = -1;
-        String[] reservadas = {"const","if","var","while"};
+        int res = 100;
+        String[] reservadas = {"const","var","proced","begin","end","if","then","while","do","for","to","down","read","write","call"};
         palabra = palabra.toLowerCase();
         for (int i = 0 ; i < reservadas.length ; i++){
             if (palabra.equals(reservadas[i])) {

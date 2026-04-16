@@ -39,7 +39,7 @@ public class Prueba2 {
                 continue;
             }
             if (matcher.group(6)!= null) {
-                System.out.println("ERROR");
+                lexemas.add(new Lexema(hallazgo, "Error"));
             }
             //Continuar con los demas grupos
         } for (Lexema e : lexemas) {
