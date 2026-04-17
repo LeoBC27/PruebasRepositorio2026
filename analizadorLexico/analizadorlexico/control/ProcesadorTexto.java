@@ -26,12 +26,12 @@ public class ProcesadorTexto {
 
         ArrayList<String> listaLexemas = new ArrayList<>();
 
-        String regex = "([A-Za-z]\\w*)|"+//Identificadores
-                        "(0|[1-9]\\d*)|"+//Numeros
-                        "(==|!=|<=|>=|<|>|=|\\+|-|\\*|/)|"+//Logicos
-                        "(\\.|,|;|\\(|\\))|"+//
-                        "(/s)|"+//
-                        "(.)";
+        String regex = "([A-Za-z]\\w*)|" + // Identificadores
+                "(0|[1-9]\\d*)|" + // Numeros
+                "(==|!=|<=|>=|<|>|=|\\+|-|\\*|/)|" + // Logicos
+                "(\\.|,|;|\\(|\\))|" + //
+                "(/s)|" + //
+                "(.)";
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(texto);
@@ -40,26 +40,32 @@ public class ProcesadorTexto {
 
             String hallazgo = matcher.group();
 
+            //IDENTIFICADORES
             if (matcher.group(1) != null) {
                 cantIDs++;
                 resultados.append("Identificador: ").append(hallazgo).append("\n");
-
-            } else if (matcher.group(2) != null) {
+                continue;
+            }
+            // NUMEROS
+            if (matcher.group(2) != null) {
                 cantNum++;
                 resultados.append("Número: ").append(hallazgo).append("\n");
+                continue;
+            }
 
-            } else if (matcher.group(3) != null) {
+            // OPERADORES / LEXEMAS
+            if (matcher.group(3) != null) {
                 cantLexe++;
 
                 String nombreSimb = nombreLexema(hallazgo);
                 listaLexemas.add(nombreSimb + ": " + hallazgo);
 
-                resultados.append(nombreSimb)
-                        .append(": ")
-                        .append(hallazgo)
-                        .append("\n");
+                resultados.append(nombreSimb).append(": ").append(hallazgo).append("\n");
+                continue;
+            }
 
-            } else if (matcher.group(4) != null) {
+            // ERRORES LEXICOS
+            if (matcher.group(4) != null) {
 
                 cantErrores++;
                 erroresLexicos++;
@@ -83,9 +89,10 @@ public class ProcesadorTexto {
                     resultados.append("\n-- Analisis Detenido Por el Usuario --\n");
                     break;
                 }
+
+                continue;
             }
         }
-
         return "IDs: " + cantIDs +
                 " | Números: " + cantNum +
                 " | Lexemas: " + cantLexe +

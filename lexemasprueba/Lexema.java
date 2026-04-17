@@ -1,4 +1,4 @@
-package PruebasRepositorio2026.lexemas;
+package lexemasprueba;
 
 public class Lexema {
     private String dato;
@@ -9,14 +9,15 @@ public class Lexema {
     public Lexema(String dato, String tipo) {
         this.dato = dato;
         this.tipo = tipo;
-        if (tipo.equals("ID")){
+        if (tipo.equals("ID")) {
             this.token = PruebasClase.esReservada(dato);
-            this.tipo=(token==14)?tipo:"PR";
-        } else{
+            this.tipo = (token == 14) ? tipo : "PR";
+        } else {
             this.token = 0;
         }
     }
-    //getters and setters
+
+    // getters and setters
     public String getDato() {
         return dato;
     }
@@ -32,11 +33,10 @@ public class Lexema {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
+
     @Override
     public String toString() {
         return "[" + dato + "\t" + tipo + "\t" + token + "\t" + "]";
     }
-        
-    
+
 }

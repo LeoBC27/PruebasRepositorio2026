@@ -1,4 +1,4 @@
-package PruebasRepositorio2026.lexemas;
+package lexemasprueba;
 
 public class PruebasClase {
         public static void main(String[] args) {
