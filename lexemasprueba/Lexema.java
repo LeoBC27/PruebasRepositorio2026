@@ -5,38 +5,26 @@ public class Lexema {
     private String tipo;
     private int token;
 
-    // Constructor
     public Lexema(String dato, String tipo) {
         this.dato = dato;
         this.tipo = tipo;
+        
         if (tipo.equals("ID")) {
-            this.token = PruebasClase.esReservada(dato);
-            this.tipo = (token == 14) ? tipo : "PR";
-        } else {
+            this.token = ALexico.esReservada(dato);
+            this.tipo = (this.token == ALexico.ID) ? "ID" : "PR";
+        } else if (tipo.equals("Num")) {
+            this.token = ALexico.NUM;
+        } else if (tipo.equals("Error")) {
             this.token = 0;
+        } else {
+            // Es un símbolo
+            this.tipo = "Simb";
+            this.token = ALexico.obtenerTokenSimbolo(dato);
         }
-    }
-
-    // getters and setters
-    public String getDato() {
-        return dato;
-    }
-
-    public void setDato(String dato) {
-        this.dato = dato;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     @Override
     public String toString() {
-        return "[" + dato + "\t" + tipo + "\t" + token + "\t" + "]";
+        return "[ " + dato + "\t" + tipo + "\t" + token + "\t]";
     }
-
 }
