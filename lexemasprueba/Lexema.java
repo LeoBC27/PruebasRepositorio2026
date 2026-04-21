@@ -8,7 +8,8 @@ public class Lexema {
     public Lexema(String dato, String tipo) {
         this.dato = dato;
         this.tipo = tipo;
-        
+
+         //Cambiar else if
         if (tipo.equals("ID")) {
             this.token = ALexico.esReservada(dato);
             this.tipo = (this.token == ALexico.ID) ? "ID" : "PR";
