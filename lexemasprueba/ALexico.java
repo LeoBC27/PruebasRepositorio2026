@@ -2,36 +2,36 @@ package lexemasprueba;
 
 public class ALexico {
     // Identificadores y Literales
-    public static final int ID = 14;
-    public static final int NUM = 7;
+    public static final int ID = 1;
+    public static final int NUM = 2;
 
     // Operadores Relacionales
-    public static final int IGUAL_IGUAL = 12;
-    public static final int DIFERENTE_DE = 29;
-    public static final int MENOR_IGUAL_QUE = 17;
-    public static final int MENOR_QUE = 4;
-    public static final int MAYOR_QUE = 50;
-    public static final int MAYOR_IGUAL_QUE = 8;
+    public static final int IGUAL_IGUAL = 11;
+    public static final int DIFERENTE_DE = 12;
+    public static final int MENOR_IGUAL_QUE = 13;
+    public static final int MENOR_QUE = 14;
+    public static final int MAYOR_QUE = 15;
+    public static final int MAYOR_IGUAL_QUE = 16;
 
     // Operadores Aritméticos
-    public static final int SUMA = 36;
-    public static final int RESTA = 25;
-    public static final int MULT = 41;
-    public static final int DIV = 13;
+    public static final int SUMA = 21;
+    public static final int RESTA = 22;
+    public static final int MULT = 23;
+    public static final int DIV = 24;
 
     // Simbolos especiales y Puntuación
-    public static final int PUNTO = 20;
-    public static final int COMA = 47;
+    public static final int PUNTO = 31;
+    public static final int COMA = 32;
     public static final int IGUAL = 33;
-    public static final int PUNTO_COMA = 1; 
-    public static final int PARENTESIS_ABRE = 10;
-    public static final int PARENTESIS_CIERRA = 26;
+    public static final int PUNTO_COMA = 34; 
+    public static final int PARENTESIS_ABRE = 35;
+    public static final int PARENTESIS_CIERRA = 36;
 
     public static int esReservada(String palabra) {
         int res = 14; // Si no la encuentra es un ID normal (14)
         
         String[] reservadas = {"const","var","proced","begin","end","if","then","while","do","for","to","down","read","write","call"};
-        int[] valores = {42, 3, 27, 19, 5, 38, 11, 45, 22, 9, 31, 16, 48, 2, 34};
+        int[] valores = {41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55};
         
         palabra = palabra.toLowerCase();
         

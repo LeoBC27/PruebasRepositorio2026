@@ -23,7 +23,6 @@ public class ProcesadorTexto {
 
         ArrayList<Lexema> listaLexemas = new ArrayList<>();
 
-        // TU REGEX EXACTA (Solo cambié /s por \\s+ para el grupo 5 de espacios)
         String regex = "([A-Za-z]\\w*)|" + // Grupo 1: Identificadores
                 "(0|[1-9]\\d*)|" + // Grupo 2: Numeros
                 "(==|!=|<=|>=|<|>|=|\\+|-|\\*|/)|" + // Grupo 3: Logicos y Aritméticos
