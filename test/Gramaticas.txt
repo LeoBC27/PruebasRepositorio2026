@@ -1,0 +1,67 @@
+<Programa> -> <Bloque> .
+
+<Bloque> -> <LinealC> <LinealV> <LinealP> <Proposicion>
+<LinealC> -> <LinealConst>
+<LinealC> -> ∅
+<LinealConst> -> const <CicloNum> ;
+<CicloNum> -> id = num
+<CicloNum> -> id = num , <CicloNum>
+<LinealV> -> <LinealVar>
+<LinealV> -> ∅
+<LinealVar> -> var <CicloId> ;
+<CicloId> -> id
+<CicloId> -> id , <CicloId>
+<LinealP> -> <CicloProc>
+<LinealP> -> ∅
+<CicloProc> -> <LinealProc>
+<CicloProc> -> <LinealProc> <CicloProc>
+<LinealProc> -> proced id ; <Bloque> ;
+
+<Condicion> -> <Expresion> <MultSigno> <Expresion>
+<MultSigno> -> ==
+<MultSigno> -> !=
+<MultSigno> -> <
+<MultSigno> -> >
+<MultSigno> -> <=
+<MultSigno> -> >=
+
+<Proposicion> -> <MultPropo>
+<MultPropo> -> <LinealBegin>
+<MultPropo> -> <LinealId>
+<MultPropo> -> <LinealWrite>
+<MultPropo> -> <LinealRead>
+<MultPropo> -> <LinealCall>
+<MultPropo> -> <LinealIf>
+<MultPropo> -> <LinealWhile>
+<MultPropo> -> <LinealFor>
+<LinealBegin> -> begin <CicloProp> end
+<CicloProp> -> <Proposicion>
+<CicloProp> -> <Proposicion> ; <CicloProp>
+<LinealId> -> id = <Expresion>
+<LinealWrite> -> write <DisyWri>
+<DisyWri> -> id
+<DisyWri> -> num
+<LinealRead> -> read id
+<LinealCall> -> call id
+<LinealIf> -> if <Condicion> then <Proposicion>
+<LinealWhile> -> while <Condicion> do <Proposicion>
+<LinealFor> -> for id = <Expresion> <DisyExp> <Expresion> do <Proposicion>
+<DisyExp> -> to
+<DisyExp> -> down
+
+<Expresion> -> <Termino>
+<Expresion> -> <Expresion> <CicloTerm> <Termino>
+<CicloTerm> -> <DisySig>
+<DisySig> -> +
+<DisySig> -> -
+
+<Termino> -> <Factor>
+<Termino> -> <Termino> <CicloFact> <Factor>
+<CicloFact> -> <DisySigno>
+<DisySigno> -> *
+<DisySigno> -> /
+
+<Factor> -> <MultExp>
+<MultExp> -> (<Expresion>)
+<MultExp> -> id
+<MultExp> -> num
