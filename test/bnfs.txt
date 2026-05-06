@@ -3,12 +3,15 @@
 <Bloque>::=<LinealC><LinealV><LinealP><Proposicion>
 <LinealC>::= <LinealConst>|∅
 <LinealConst>::= const<CicloNum>;
-<CicloNum>::= id=num|id=num,<CicloNum>
+<CicloNum>::= id=num<CicloNumPrima>
+<CicloNumPrima>::= ,<CicloNum>|∅
 <LinealV>::= <LinealVar>|∅
 <LinealVar>::= var<CicloId>;
-<CicloId>::= id|id,<CicloId>
+<CicloId>::= id<CicloIdPrima>
+<CicloIdPrima>::= ,<CicloId>|∅
 <LinealP>::=<CicloProc>|∅
-<CicloProc>::= <LinealProc>|<LinealProc><CicloProc>
+<CicloProc>::= <LinealProc><CicloProcPrima>
+<CicloProcPrima>::= <CicloProc>|∅
 <LinealProc>::= proced id;<Bloque>;
 
 
@@ -18,7 +21,8 @@
 <Proposicion>::= <MultPropo>
 <MultPropo>::= <LinealBegin>|<LinealId>|<LinealWrite>|<LinealRead>|<LinealCall>|<LinealIf>|<LinealWhile>|<LinealFor>
 <LinealBegin>::= begin<CicloProp>end
-<CicloProp>::= <Proposicion>|<Proposicion>;<CicloProp>
+<CicloProp>::= <Proposicion><CicloPropPrima>
+<CicloPropPrima>::= ;<CicloProp>|∅
 <LinealId>::= id=<Expresion>
 <LinealWrite>::= write<DisyWri>
 <DisyWri>::= id|num
@@ -29,11 +33,13 @@
 <LinealFor>::= for id =<Expresion><DisyExp><Expresion> do <Proposicion>
 <DisyExp>::= to|down
 
-<Expresion>::= <Termino>|<Expresion><CicloTerm><Termino> 
+<Expresion>::= <Termino><ExpresionPrima>
+<ExpresionPrima>::= <CicloTerm><Termino><ExpresionPrima>|∅
 <CicloTerm>::= <DisySig>
 <DisySig>::= +|-
 
-<Termino>::= <Factor>|<Termino><CicloFact><Factor>
+<Termino>::= <Factor><TerminoPrima>
+<TerminoPrima>::= <CicloFact><Factor><TerminoPrima>|∅
 <CicloFact>::= <DisySigno>
 <DisySigno>::= *|/
 
