@@ -1,0 +1,47 @@
+First<Programa> = First<Bloque> = {const, var, proced, begin, id, write, read, call, if, while, for}
+
+
+First<Bloque> = First<LinealC> = First<LinealConst> = {const, var, proced, begin, id, write, read, call, if, while, for}
+
+First<LinealC> = First<LinealConst> = {const} + ∅
+First<LinealConst> = {const}
+First<CicloNum> = {id} 
+
+
+First<LinealV> = First<LinealVar> = {var} + ∅
+First<LinealVar> = {var}
+First<CicloId> = {id}
+
+First<LinealP> = First<CicloProc> = {proced} + ∅
+First<CicloProc> = First<LinealProc> = {proced}
+First<LinealProc> = {proced}
+
+First<Condicion> = First<Expresion> = {(, id, num}
+First<MultSigno> = {==, !=, <, >, <=, >=}
+
+First<Proposicion> = First<MultPropo> = {begin, id, write, read, call, if, while, for}
+First<MultPropo> = {begin, id, write, read, call, if, while, for}
+
+First<LinealBegin> = {begin}
+First<CicloProp> = First<Proposicion> = First<MultPropo> = {begin, id, write, read, call, if, while, for}
+
+First<LinealId> = {id}
+First<LinealWrite> = {write}
+First<DisyWri> = {id, num}
+First<LinealRead> = {read}
+First<LinealCall> = {call}
+First<LinealIf> = {if}
+First<LinealWhile> = {while}
+First<LinealFor> = {for}
+First<DisyExp> = {to, down}
+
+First<Expresion> = First<Termino> = {(, id, num}
+First<CicloTerm> = First<DisySig> = {+, -}
+First<DisySig> = {+, -}
+
+First<Termino> = First<Termino> = {(, id, num}
+First<CicloFact> = First<DisySigno> = {*, /}
+First<DisySigno> = {*, /}
+
+First<Factor> = First<MultExp> = {(, id, num}
+First<MultExp> = {(, id, num}
