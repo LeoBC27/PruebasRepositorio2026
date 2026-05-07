@@ -1,21 +1,24 @@
 <Programa> -> <Bloque> .
 
 <Bloque> -> <LinealC> <LinealV> <LinealP> <Proposicion>
+
 <LinealC> -> <LinealConst>
 <LinealC> -> ∅
 <LinealConst> -> const <CicloNum> ;
 <CicloNum> -> id = num <CicloNumPrima>
 <CicloNumPrima> -> , <CicloNum>
 <CicloNumPrima> -> ∅
+
 <LinealV> -> <LinealVar>
 <LinealV> -> ∅
 <LinealVar> -> var <CicloId> ;
 <CicloId> -> id <CicloIdPrima>
 <CicloIdPrima> -> , <CicloId>
 <CicloIdPrima> -> ∅
+
 <LinealP> -> <CicloProc>
 <LinealP> -> ∅
-<CicloProc> -> <LinealProc><CicloProcPrima>
+<CicloProc> -> <LinealProc> <CicloProcPrima>
 <CicloProcPrima> -> <CicloProc>
 <CicloProcPrima> -> ∅
 <LinealProc> -> proced id ; <Bloque> ;
@@ -37,10 +40,12 @@
 <MultPropo> -> <LinealIf>
 <MultPropo> -> <LinealWhile>
 <MultPropo> -> <LinealFor>
+
 <LinealBegin> -> begin <CicloProp> end
-<CicloProp> -> <Proposicion><CicloPropPrima>
+<CicloProp> -> <Proposicion> <CicloPropPrima>
 <CicloPropPrima> -> ; <CicloProp>
 <CicloPropPrima> -> ∅
+
 <LinealId> -> id = <Expresion>
 <LinealWrite> -> write <DisyWri>
 <DisyWri> -> id
@@ -60,7 +65,7 @@
 <DisySig> -> +
 <DisySig> -> -
 
-<Termino> -> <Factor><TerminoPrima>
+<Termino> -> <Factor> <TerminoPrima>
 <TerminoPrima> -> <CicloFact> <Factor> <TerminoPrima>
 <TerminoPrima> -> ∅
 
