@@ -1,0 +1,30 @@
+First<Programa> = First<Bloque> = {const, var, proced, begin, id, write, read, call, if, while, for}
+
+
+First<Bloque> = First<LinealC> = {const, var, proced, begin, id, write, read, call, if, while, for}
+First<LinealC> = First<LinealConst> = {const} + ∅
+First<CicloNum> = {id}
+First<CicloNumPrima> = {,} + ∅
+First<LinealV> = First<LinealVar> = {var} + ∅
+First<CicloId> = {id}
+First<CicloIdPrima> = {,} + ∅
+First<LinealP> = First<CicloProc> = {proced} + ∅
+
+
+First<Condicion> = First<Expresion> = {(, id, num}
+First<MultSigno> = {==, !=, <, >, <=, >=}
+First<DisyWri> = {id, num}
+First<Proposicion> = First<MultPropo> = {begin, id, write, read, call, if, while, for}
+First<DisyExp> = {to, down}
+First<CicloProp> = First<Proposicion> = First<MultPropo> = {begin, id, write, read, call, if, while, for}
+First<CicloPropPrima> = {;} + ∅
+
+First<Expresion> = First<Termino> = {(, id, num}
+First<Exp_prima> = First<DisySig> = {+, -} + ∅
+First<DisySig> = {+, -}
+
+First<Termino> = First<Factor> = {(, id, num}
+First<Termino_prima> = First<DisySigno> = {*, /} + ∅
+First<DisySigno> = {*, /}
+
+First<Factor> = {(, id, num}
